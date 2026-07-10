@@ -35,6 +35,20 @@ and the place where tags coined during authoring are formally registered.
 - `perturbation_overgeneralization` — extrapolating an in-vitro/cell-line/genetic perturbation to organism/clinical causality.
 - `animal_model_translation` — assuming a model-organism phenotype (or drug effect) transfers to humans.
 
+## §7.2b Evolution / comparative genomics — **proposed new subsection**
+
+Plan §7.2 folds evolution into omics and supplies only one evolution tag
+(`conservation_to_disease_causality`). Authoring the evolution track (items 024–026) required six
+more. Proposed as a dedicated subsection; all six are **provisional pending sign-off**.
+
+- `conservation_to_disease_causality` — assuming a conserved gene/site is therefore causal for a specific disease. *(existing; §7.2)*
+- `conservation_to_essentiality` — assuming a conserved element is necessary in vivo, or that deleting it yields an overt phenotype; constraint implies selection on *some* function, not demonstrated necessity.
+- `phylogenetic_nonindependence` — treating species as independent observations in a cross-species comparison; shared ancestry makes related species resemble one another, inflating false positives (requires independent contrasts / PGLS).
+- `comparative_genomics_overreach` — inferring function or causality from a cross-species genomic comparison (gene-family size, presence/absence, copy number) without phylogenetic control or perturbation.
+- `selection_scan_overinterpretation` — treating a selection-scan signal as identifying the selected gene; demography mimics selection, and hitchhiking sweeps a whole region rather than a gene.
+- `adaptive_storytelling` — attributing a selection signal to a specific phenotype ("selected *for* X") on the basis of a nearby gene annotation; a post-hoc just-so story, not evidence.
+- `ecological_fallacy` — inferring an individual-level association or causal effect from a population-level correlation. *(cross-cuts to RWE/HEOR; usable outside the evolution track)*
+
 ## §7.3 RWE / HEOR
 
 - `observational_treatment_effect` — interpreting an observational treatment–outcome association as a causal treatment effect.
@@ -70,10 +84,22 @@ Tags coined during authoring and now promoted to the canonical vocabulary.
 
 ## Provisional — pending author sign-off
 
-Coined for draft items 016–023; **not yet approved**. Rename/merge as you prefer.
+Coined during authoring of draft items 016–026; **not yet approved**. Rename/merge as you prefer.
+These have accumulated across two batches and want a single sign-off pass.
+
+*From the omics / cross-scale batch (016–023):*
 
 - `trajectory_causal_direction` — reading a single-cell pseudotime/trajectory ordering as a real temporal or causal sequence. (Item: `omics-sc-pseudotime-019`.) *Candidate merge target:* could fold under `single_cell_marker_overinterpretation` if you'd rather not add a token.
 - `genetic_to_therapeutic_overclaim` — treating a genetically/MR-validated causal target as proof a drug against it will be efficacious (ignores lifelong-genetic vs pharmacological differences, safety, tractability). (Item: `xscale-pqtl-mr-drug-020`.)
+
+*From the evolution batch (024–026) — see proposed §7.2b above for definitions:*
+
+- `conservation_to_essentiality` (item 024)
+- `phylogenetic_nonindependence` (item 025) — the star concept of 025; nothing else in the benchmark tests it.
+- `comparative_genomics_overreach` (item 025)
+- `selection_scan_overinterpretation` (item 026)
+- `adaptive_storytelling` (item 026)
+- `ecological_fallacy` (item 026) — *note:* this one is not evolution-specific and would be equally at home in §7.3 RWE/HEOR.
 
 ## To reconcile
 
