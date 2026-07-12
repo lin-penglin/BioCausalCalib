@@ -101,6 +101,10 @@ These have accumulated across two batches and want a single sign-off pass.
 - `adaptive_storytelling` (item 026)
 - `ecological_fallacy` (item 026) — *note:* this one is not evolution-specific and would be equally at home in §7.3 RWE/HEOR.
 
+*From the RWE / genetics batch (027–034):*
+
+- `nearest_gene_fallacy` (item 031) — assigning causality at a GWAS locus to the gene nearest the lead SNP; regulatory variants frequently act at long range on distal genes. *Candidate merge target:* could fold under `GWAS_to_causality`, but it names a distinct, commonly-made inference.
+
 ## To reconcile
 
 - `unsupported_hypothesis` — used as an `overclaim_type` in seed item `evo-conservation-006`, but in Appendix A it is listed as an *evidence type*, not an overclaim tag. Decide whether to (a) keep it as a valid overclaim token meaning "asserted with no empirical support," or (b) drop it from `overclaim_types` and rely on `warranted_strength = 0`.
