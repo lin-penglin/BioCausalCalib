@@ -7,27 +7,53 @@ from pydantic import ValidationError
 from biocausalcalib.schemas import Item, ModelOutput
 
 ROOT = Path(__file__).resolve().parents[1]
-SAMPLE_PATH = ROOT / "data" / "sample_items.jsonl"
+SEED_PATH = ROOT / "data" / "biocausalcalib_v0_seed.jsonl"
 
 
-def first_sample_payload() -> dict[str, object]:
-    return json.loads(SAMPLE_PATH.read_text(encoding="utf-8").splitlines()[0])
+def first_seed_payload() -> dict[str, object]:
+    return json.loads(SEED_PATH.read_text(encoding="utf-8").splitlines()[0])
 
 
-def test_item_round_trips_valid_sample_item() -> None:
-    item = Item.model_validate(first_sample_payload())
+def test_item_round_trips_valid_seed_item() -> None:
+    item = Item.model_validate(first_seed_payload())
 
     round_tripped = Item.model_validate_json(item.model_dump_json())
 
     assert round_tripped == item
     assert round_tripped.id == "rwe-hrt-chd-001"
+    assert round_tripped.planted_fallacies  # primary ground truth is present
 
 
 def test_item_rejects_invalid_adjudication_range_order() -> None:
-    payload = first_sample_payload()
+    payload = first_seed_payload()
     payload["adjudication_range"] = [2, 1]
 
     with pytest.raises(ValidationError, match="adjudication_range"):
+        Item.model_validate(payload)
+
+
+def test_item_rejects_strength_outside_adjudication_range() -> None:
+    payload = first_seed_payload()
+    payload["warranted_strength"] = 1
+    payload["adjudication_range"] = [2, 3]
+
+    with pytest.raises(ValidationError, match="outside"):
+        Item.model_validate(payload)
+
+
+def test_item_rejects_unknown_fallacy_type() -> None:
+    payload = first_seed_payload()
+    payload["planted_fallacies"][0]["type"] = "not_a_real_fallacy"
+
+    with pytest.raises(ValidationError, match="unknown fallacy type"):
+        Item.model_validate(payload)
+
+
+def test_item_rejects_unknown_distractor_type() -> None:
+    payload = first_seed_payload()
+    payload["distractors"][0]["type"] = "not_a_real_fallacy"
+
+    with pytest.raises(ValidationError, match="unknown distractor type"):
         Item.model_validate(payload)
 
 
